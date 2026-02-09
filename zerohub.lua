@@ -2,7 +2,7 @@
 -- Optimized for Delta, Arceus X, Xeno, Krnl
 -- 23+ Functions + Gamepass Spoofing
 
-local Fluent = loadstring(game:HttpGet("https://github.com/jyhori/ZeroHub"))()
+local Fluent = loadstring(game:HttpGet("https://github.com/jyhori/ZeroHub/blob/main/zerohub.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/jyhori/ZeroHub/main/zerohub.lua"))()
 
 -- ГЕЙМПАСС СПУФЕР (Free Carpet & Admin)
