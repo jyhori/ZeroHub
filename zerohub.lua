@@ -1,8 +1,6 @@
 -- Zero Hub: Steal a Brainrot Edition
 -- Supported: Delta, Xeno, Arceus X, Fluxus
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/jyhori/ZeroHub/main/zerohub.lua"))()
-local Window = Library.CreateLib("Zero Hub - Mega Menu [UPDATE]", "BloodTheme")
 local Library = {Toggle = false}
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
