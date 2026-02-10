@@ -15,9 +15,29 @@ local UIListLayout = Instance.new("UIListLayout")
 -- Настройка GUI
 ScreenGui.Name = "ZeroHub"
 ScreenGui.Parent = game:GetService("CoreGui")
+game:GetService("CoreGui")
 
-local Fluent = loadstring(game:HttpGet("https://github.com/jyhori/ZeroHub/blob/main/zerohub.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/jyhori/ZeroHub/main/zerohub.lua"))()
+Frame.Name = "MainFrame"
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.Position = UDim2.new(0.3, 0, 0.3, 0)
+Frame.Size = UDim2.new(0, 250, 0, 350)
+Frame.Active = true
+Frame.Draggable = true
+
+Title.Parent = Frame
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Text = "ZERO HUB - BRAINROT"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+
+ScrollingFrame.Parent = Frame
+ScrollingFrame.Size = UDim2.new(1, 0, 1, -40)
+ScrollingFrame.Position = UDim2.new(0, 0, 0, 40)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
+
+UIListLayout.Parent = ScrollingFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
 -- ГЕЙМПАСС СПУФЕР (Free Carpet & Admin)
 local old; old = hookmetamethod(game, "__namecall", function(self, ...)
