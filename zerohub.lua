@@ -1,6 +1,20 @@
 -- ZERO HUB ULTIMATE (MEGA MENU)
 -- Optimized for Delta, Arceus X, Xeno, Krnl
 -- 23+ Functions + Gamepass Spoofing
+-- ...
+-- Zero Hub for Steal a Brainrot
+-- Supported: Delta, Xeno, Arceus Neo, Krnl
+
+local Library = {Toggle = false}
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local UIListLayout = Instance.new("UIListLayout")
+
+-- Настройка GUI
+ScreenGui.Name = "ZeroHub"
+ScreenGui.Parent = game:GetService("CoreGui")
 
 local Fluent = loadstring(game:HttpGet("https://github.com/jyhori/ZeroHub/blob/main/zerohub.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/jyhori/ZeroHub/main/zerohub.lua"))()
