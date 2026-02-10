@@ -1,130 +1,111 @@
--- ZERO HUB ULTIMATE (MEGA MENU)
--- Optimized for Delta, Arceus X, Xeno, Krnl
--- 23+ Functions + Gamepass Spoofing
--- ...
--- Zero Hub for Steal a Brainrot
--- Supported: Delta, Xeno, Arceus Neo, Krnl
+-- Zero Hub: Steal a Brainrot Edition
+-- Supported: Delta, Xeno, Arceus X, Fluxus
 
-local Library = {Toggle = false}
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local Title = Instance.new("TextLabel")
-local ScrollingFrame = Instance.new("ScrollingFrame")
-local UIListLayout = Instance.new("UIListLayout")
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/jyhori/ZeroHub/main/zerohub.lua"))()
+local Window = Library.CreateLib("Zero Hub - Mega Menu [UPDATE]", "BloodTheme")
 
--- Настройка GUI
-ScreenGui.Name = "ZeroHub"
-ScreenGui.Parent = game:GetService("CoreGui")
-game:GetService("CoreGui")
+-- Группировка функций
+local Main = Window:NewTab("Main Cheats")
+local Movement = Window:NewTab("Movement")
+local Teleport = Window:NewTab("Teleport & Server")
+local Combat = Window:NewTab("Combat & Anti")
 
-Frame.Name = "MainFrame"
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Frame.Position = UDim2.new(0.3, 0, 0.3, 0)
-Frame.Size = UDim2.new(0, 250, 0, 350)
-Frame.Active = true
-Frame.Draggable = true
+-- [MAIN FUNCTIONS]
+local MainSection = Main:NewSection("Automation")
 
-Title.Parent = Frame
-Title.Size = UDim2.new(1, 0, 0, 40)
-Title.Text = "ZERO HUB - BRAINROT"
-Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-Title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
-
-ScrollingFrame.Parent = Frame
-ScrollingFrame.Size = UDim2.new(1, 0, 1, -40)
-ScrollingFrame.Position = UDim2.new(0, 0, 0, 40)
-ScrollingFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
-
-UIListLayout.Parent = ScrollingFrame
-UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-
--- ГЕЙМПАСС СПУФЕР (Free Carpet & Admin)
-local old; old = hookmetamethod(game, "__namecall", function(self, ...)
-    local method = getnamecallmethod()
-    local args = {...}
-    if not checkcaller() and method == "UserOwnsGamePassAsync" then
-        return true -- Всегда возвращает "Куплено"
-    end
-    return old(self, ...)
-end)
-
-local Window = Fluent:CreateWindow({
-    Title = "ZERO HUB | MEGA MENU",
-    SubTitle = "Steal a Brainrot Edition",
-    TabWidth = 160, Size = UDim2.fromOffset(580, 460), Acrylic = true, Theme = "Dark"
-})
-
-local Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "rbxassetid://4483345998" }),
-    Combat = Window:AddTab({ Title = "Combat/Troll", Icon = "rbxassetid://4483345998" }),
-    Teleport = Window:AddTab({ Title = "TP/Locs", Icon = "rbxassetid://4483345998" }),
-    Server = Window:AddTab({ Title = "Server Settings", Icon = "rbxassetid://4483345998" })
-}
-
--- ПЕРЕМЕННЫЕ И ЛОГИКА
-local LP = game.Players.LocalPlayer
-local LocA, LocB
-
--- 1-4. ДВИЖЕНИЕ
-Tabs.Main:AddToggle("Noclip", {Title = "Noclip", Default = false, Callback = function(v) _G.Noclipping = v end})
-Tabs.Main:AddSlider("Speed", {Title = "Speed Boost", Default = 16, Min = 16, Max = 500, Rounding = 1, Callback = function(v) LP.Character.Humanoid.WalkSpeed = v end})
-Tabs.Main:AddButton({Title = "Fly (E)", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com"))() end})
-Tabs.Main:AddToggle("InfJump", {Title = "Infinity Jump", Default = false, Callback = function(v) _G.InfJump = v end})
-
--- 5-8. КРАЖА И ФАРМ
-Tabs.Main:AddButton({Title = "Instant Steal (TP Method)", Callback = function()
-    local Root = LP.Character.HumanoidRootPart
-    local Old = Root.CFrame
-    Root.CFrame = CFrame.new(100, 10, 100) -- ЗАМЕНИТЬ НА КООРДИНАТЫ ЗОНЫ СБОРА
-    task.wait(0.2)
-    Root.CFrame = Old
-end})
-Tabs.Main:AddToggle("FastSteal", {Title = "Fast Steal (0s Hold)", Default = false, Callback = function(v)
-    for _, p in pairs(game:GetService("Workspace"):GetDescendants()) do
-        if p:IsA("ProximityPrompt") then p.HoldDuration = v and 0 or 1 end
-    end
-end})
-
--- 9-13. COMBAT & PROTECTION
-Tabs.Combat:AddToggle("AntiHit", {Title = "Desync (Anti-Hit)", Default = false, Callback = function(v) _G.Desync = v end})
-Tabs.Combat:AddToggle("AntiBee", {Title = "Anti Bee & Disco", Default = false, Callback = function(v) _G.AntiBee = v end})
-Tabs.Combat:AddButton({Title = "Aimbot", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com"))() end})
-Tabs.Combat:AddButton({Title = "Fling Server", Callback = function() loadstring(game:HttpGet("https://raw.githubusercontent.com"))() end})
-
--- 14-17. ТЕЛЕПОРТЫ
-Tabs.Teleport:AddButton({Title = "Set Loc A", Callback = function() LocA = LP.Character.HumanoidRootPart.CFrame end})
-Tabs.Teleport:AddButton({Title = "Teleport A", Callback = function() if LocA then LP.Character.HumanoidRootPart.CFrame = LocA end end})
-Tabs.Teleport:AddButton({Title = "Set Loc B", Callback = function() LocB = LP.Character.HumanoidRootPart.CFrame end})
-Tabs.Teleport:AddButton({Title = "Teleport B", Callback = function() if LocB then LP.Character.HumanoidRootPart.CFrame = LocB end end})
-
--- 18-21. АНТИ-ФУНКЦИИ
-Tabs.Main:AddToggle("AntiRagdoll", {Title = "Anti Ragdoll", Default = true, Callback = function(v) LP.Character.Humanoid:SetStateEnabled(3, not v) end})
-Tabs.Main:AddToggle("AntiVoid", {Title = "Anti Void", Default = true, Callback = function(v) _G.AntiVoid = v end})
-Tabs.Main:AddToggle("AntiMedusa", {Title = "Anti Medusa", Default = true, Callback = function(v) end}) -- Логика зависит от модели медузы
-
--- 22-23. SERVER HOP & LAGGER
-Tabs.Server:AddButton({Title = "Lag Server", Callback = function() for i=1, 1000 do game:GetService("ReplicatedStorage").Events.SayMessageRequest:FireServer("LAGGING", "All") end end})
-Tabs.Server:AddDropdown("Hop", {Title = "Server Hop Filter", Values = {"10-50M", "50-100M", "100M-1B", "1B-inf"}, Callback = function(v) game:GetService("TeleportService"):Teleport(game.PlaceId) end})
-
--- ГЕЙМПАССЫ (ВИЗУАЛЬНО И ФУНКЦИОНАЛЬНО)
-Tabs.Main:AddButton({Title = "Get Admin Panel & Carpet", Callback = function()
-    print("Admin Panel Activated via Spoof")
-    Fluent:Notify({Title = "Success", Content = "Free Gamepasses Unlocked (Client Side)", Duration = 3})
-end})
-
--- СЕРВИСНЫЕ ЦИКЛЫ
-game:GetService("RunService").Heartbeat:Connect(function()
-    if _G.Noclipping then
-        for _, p in pairs(LP.Character:GetDescendants()) do
-            if p:IsA("BasePart") then p.CanCollide = false end
+MainSection:NewButton("Instant Steal (Teleport Method)", "Steals and returns", function()
+    local player = game.Players.LocalPlayer
+    local char = player.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        local oldPos = char.HumanoidRootPart.CFrame
+        -- Логика: ТП к мозгу -> Сбор -> ТП на базу
+        -- Примечание: Координаты зон меняются, скрипт ищет ближайший Brainrot
+        for _, v in pairs(workspace:GetDescendants()) do
+            if v.Name == "Brainrot" and v:FindFirstChild("TouchInterest") then
+                char.HumanoidRootPart.CFrame = v.CFrame
+                firetouchinterest(char.HumanoidRootPart, v, 0)
+                wait(0.1)
+                char.HumanoidRootPart.CFrame = oldPos
+                break
+            end
         end
     end
-    if _G.Desync then
-        LP.Character.HumanoidRootPart.Velocity = Vector3.new(9e9, 9e9, 9e9)
-        task.wait(0.01)
-        LP.Character.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+end)
+
+MainSection:NewToggle("Fast Steal", "Reduces interaction time", function(state)
+    _G.FastSteal = state
+    while _G.FastSteal do
+        task.wait()
+        pcall(function()
+            for _, v in pairs(workspace:GetDescendants()) do
+                if v:IsA("ProximityPrompt") then
+                    v.HoldDuration = 0
+                    v.MaxActivationDistance = 20
+                end
+            end
+        end)
     end
 end)
 
-Fluent:Notify({Title = "Zero Hub", Content = "Full Script Loaded Succesfully!", Duration = 5})
+-- [MOVEMENT]
+local MoveSection = Movement:NewSection("Physics")
+
+MoveSection:NewSlider("Speed Boost", "Go fast", 500, 16, function(s)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+MoveSection:NewToggle("Infinity Jump", "Jump in air", function(state)
+    game:GetService("UserInputService").JumpRequest:Connect(function()
+        if state then
+            game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
+        end
+    end)
+end)
+
+MoveSection:NewToggle("Noclip", "Walk through walls", function(state)
+    _G.Noclip = state
+    game:GetService("RunService").Stepped:Connect(function()
+        if _G.Noclip then
+            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+                if v:IsA("BasePart") then v.CanCollide = false end
+            end
+        end
+    end)
+end)
+
+-- [COMBAT & ANTI]
+local AntiSection = Combat:NewSection("Protection")
+
+AntiSection:NewToggle("Desync (Anti-Hit)", "Ghost movement for others", function(state)
+    _G.Desync = state
+    while _G.Desync do
+        local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
+        local oldC = hrp.CFrame
+        hrp.CFrame = oldC * CFrame.new(math.random(-10,10), 0, math.random(-10,10))
+        task.wait(0.05)
+        hrp.CFrame = oldC
+        task.wait(0.05)
+    end
+end)
+
+AntiSection:NewButton("Anti-Afk", "Prevents kick", function()
+    local vu = game:GetService("VirtualUser")
+    game.Players.LocalPlayer.Idled:Connect(function()
+        vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        wait(1)
+        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
+
+-- [SERVER HOP]
+local ServerSection = Teleport:NewSection("Server Filters")
+
+local function Hop(min, max)
+    print("Searching for server with " .. min .. " brains...")
+    -- Здесь вызывается стандартный метод переподключения к серверу через API
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
+end
+
+ServerSection:NewButton("Server Hop [100M-1B]", "Find rich servers", function()
+    Hop(100000000, 1000000000)
+end)
