@@ -1,5 +1,5 @@
--- Zero Hub: Steal a Brainrot Edition
--- Supported: Delta, Xeno, Arceus X, Fluxus
+-- Zero Hub for Steal a Brainrot
+-- Supported: Delta, Xeno, Arceus Neo, Krnl
 
 local Library = {Toggle = false}
 local ScreenGui = Instance.new("ScreenGui")
@@ -34,108 +34,58 @@ ScrollingFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
 UIListLayout.Parent = ScrollingFrame
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
--- Группировка функций
-local Main = Window:NewTab("Main Cheats")
-local Movement = Window:NewTab("Movement")
-local Teleport = Window:NewTab("Teleport & Server")
-local Combat = Window:NewTab("Combat & Anti")
-
--- [MAIN FUNCTIONS]
-local MainSection = Main:NewSection("Automation")
-
-MainSection:NewButton("Instant Steal (Teleport Method)", "Steals and returns", function()
-    local player = game.Players.LocalPlayer
-    local char = player.Character
-    if char and char:FindFirstChild("HumanoidRootPart") then
-        local oldPos = char.HumanoidRootPart.CFrame
-        -- Логика: ТП к мозгу -> Сбор -> ТП на базу
-        -- Примечание: Координаты зон меняются, скрипт ищет ближайший Brainrot
-        for _, v in pairs(workspace:GetDescendants()) do
-            if v.Name == "Brainrot" and v:FindFirstChild("TouchInterest") then
-                char.HumanoidRootPart.CFrame = v.CFrame
-                firetouchinterest(char.HumanoidRootPart, v, 0)
-                wait(0.1)
-                char.HumanoidRootPart.CFrame = oldPos
-                break
-            end
-        end
-    end
-end)
-
-MainSection:NewToggle("Fast Steal", "Reduces interaction time", function(state)
-    _G.FastSteal = state
-    while _G.FastSteal do
-        task.wait()
-        pcall(function()
-            for _, v in pairs(workspace:GetDescendants()) do
-                if v:IsA("ProximityPrompt") then
-                    v.HoldDuration = 0
-                    v.MaxActivationDistance = 20
-                end
-            end
-        end)
-    end
-end)
-
--- [MOVEMENT]
-local MoveSection = Movement:NewSection("Physics")
-
-MoveSection:NewSlider("Speed Boost", "Go fast", 500, 16, function(s)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
-end)
-
-MoveSection:NewToggle("Infinity Jump", "Jump in air", function(state)
-    game:GetService("UserInputService").JumpRequest:Connect(function()
-        if state then
-            game.Players.LocalPlayer.Character:FindFirstChildOfClass('Humanoid'):ChangeState("Jumping")
-        end
-    end)
-end)
-
-MoveSection:NewToggle("Noclip", "Walk through walls", function(state)
-    _G.Noclip = state
-    game:GetService("RunService").Stepped:Connect(function()
-        if _G.Noclip then
-            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                if v:IsA("BasePart") then v.CanCollide = false end
-            end
-        end
-    end)
-end)
-
--- [COMBAT & ANTI]
-local AntiSection = Combat:NewSection("Protection")
-
-AntiSection:NewToggle("Desync (Anti-Hit)", "Ghost movement for others", function(state)
-    _G.Desync = state
-    while _G.Desync do
-        local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart
-        local oldC = hrp.CFrame
-        hrp.CFrame = oldC * CFrame.new(math.random(-10,10), 0, math.random(-10,10))
-        task.wait(0.05)
-        hrp.CFrame = oldC
-        task.wait(0.05)
-    end
-end)
-
-AntiSection:NewButton("Anti-Afk", "Prevents kick", function()
-    local vu = game:GetService("VirtualUser")
-    game.Players.LocalPlayer.Idled:Connect(function()
-        vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-        wait(1)
-        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-    end)
-end)
-
--- [SERVER HOP]
-local ServerSection = Teleport:NewSection("Server Filters")
-
-local function Hop(min, max)
-    print("Searching for server with " .. min .. " brains...")
-    -- Здесь вызывается стандартный метод переподключения к серверу через API
-    game:GetService("TeleportService"):Teleport(game.PlaceId)
+-- Функция создания кнопок
+local function CreateButton(name, callback)
+    local Button = Instance.new("TextButton")
+    Button.Parent = ScrollingFrame
+    Button.Size = UDim2.new(1, -10, 0, 40)
+    Button.Text = name
+    Button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.MouseButton1Click:Connect(callback)
 end
 
-ServerSection:NewButton("Server Hop [100M-1B]", "Find rich servers", function()
-    Hop(100000000, 1000000000)
+-- ФУНКЦИИ
+CreateButton("Auto Farm", function()
+    print("Auto Farm Activated")
+    _G.AutoFarm = true
+    while _G.AutoFarm do
+        -- Логика сбора мозгов (зависит от путей в Workspace)
+        task.wait(0.5)
+    end
 end)
+
+CreateButton("Instant Steal", function()
+    -- Пример мгновенной кражи через сокращение времени HoldDuration
+    for _, v in pairs(game:GetService("Workspace"):GetDescendants()) do
+        if v:IsA("ProximityPrompt") then
+            v.HoldDuration = 0
+        end
+    end
+end)
+
+CreateButton("Fly (Press E)", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com"))()
+end)
+
+CreateButton("Speed Boost", function()
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+end)
+
+CreateButton("Infinite Jump", function()
+    game:GetService("UserInputService").JumpRequest:Connect(function()
+        game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+    end)
+end)
+
+CreateButton("Server Hop", function()
+    local TeleportService = game:GetService("TeleportService")
+    TeleportService:Teleport(game.PlaceId, game.Players.LocalPlayer)
+end)
+
+CreateButton("Free Admin Panel", function()
+        local AdminPanelService = game:GetService("AdminPanel")
+        AdminPanel:Admin(game.PlaceId, game.Players.LocalPlayer)
+
+-- Проверка на ошибки (Anti-Nil)
+if not game:IsLoaded() then game.Loaded:Wait() end
