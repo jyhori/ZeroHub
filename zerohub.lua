@@ -65,7 +65,7 @@ CreateButton("Instant Steal", function()
 end)
 
 CreateButton("Fly (Press E)", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/jyhori/ZeroHub/main/zerohub.lua"))()
 end)
 
 CreateButton("Speed Boost", function()
@@ -84,8 +84,140 @@ CreateButton("Server Hop", function()
 end)
 
 CreateButton("Free Admin Panel", function()
-        local AdminPanelService = game:GetService("AdminPanel")
-        AdminPanel:Admin(game.PlaceId, game.Players.LocalPlayer)
+    local AdminPanelService = game:GetService("AdminPanelService")
+    AdminPanelService:AdminPanel(game.PlaceId, game.Players.LocalPlayer)
+end)
+
+CreateButton("Kick Player", function()
+    local player = script.Parent
+        local player = game.Players:GetPlayerFromCharacter(part.Parent)
+        if player then 
+    player:Kick("You have permamently banned from this game.") 
+  end 
+end 
+
+CreateButton("Ban Player", function()
+    local player = script.Parent
+        local player = game.Players:GetPlayerFromCharacter(part.Parent)
+        if player then
+        player:Kick("You have permamently banned from this game forever.")
+  end
+end
+
+CreateButton("Kill Player", function()
+    local player = script.Parent
+        local player = game.Players:GetPlayerFromCharacter(part.Parent)
+        if player then
+        player:Kill()
+  end
+end
+
+CreateButton("Spawn Best Brainrot", function()
+    local brainrot = script.Parent
+    local animal = script.Parent
+    BrainrotService:Brainrot(game.PlaceId, game.Players.LocalPlayer)
+    AnimalService:Brainrot(game.PlaceId, game.Players.LocalPlayer)
+    connect:Brainrot("Strawberry Elephant")
+    connect:Animal("Strawberry Elephant")
+    spawn:Brainrot in red.line(true)
+    spawn:Animal in red.line(true)
+    game:GameService("Brainrot")
+    game:GameService("Animal")
+                end)
+        end)
+end)
+
+CreateButton("Shock Service!", function()
+    local troll = script.Parent
+    TrollService:Troll(game.PlaceId, game.Players.LocalPlayer)
+    connect:Troll("TrollFace")
+    game:GameService("Troll")
+    game:GameService("TrollFace")
+end)
+
+CreateButton("Shake Camera!", function()
+    local player = game.Players.LocalPlayer 
+local cam = workspace.CurrentCamera 
+
+while true do 
+        wait(0.1) -- Задержка между смещениями 
+        local shake =  Vector3.new ( 
+                math.random(-2, 2),  
+                math.random(-2, 2),  
+                0 
+        ) * 0.3 -- Сила тряски 
+        cam.CFrame = cam.CFrame *  CFrame.new (shake) 
+end 
+
+CreateButton("EARTHQUAKE SERVER!!!!", function()
+    local player = game.Players.LocalPlayer 
+local cam = workspace.CurrentCamera 
+
+while true do 
+        wait(0.1) -- Задержка между смещениями 
+        local shake =  Vector3.new ( 
+                math.random(-2, 2),  
+                math.random(-2, 2),  
+                0 
+        ) * 0.3 -- Сила тряски 
+        cam.CFrame = cam.CFrame *  CFrame.new (shake) 
+end 
+
+while true do
+    wait(0.1) -- Как часто трясти
+
+    for _, part in pairs(workspace:GetChildren()) do
+
+        if part:IsA("BasePart") then -- Находим детали (Part, MeshPart)
+
+            local shake = Vector3.new(
+
+                math.random(-1, 1),
+
+                0,
+
+                math.random(-1, 1)
+
+            ) * 0.1 -- Сила движения
+
+            part.Position = part.Position + shake
+
+        end
+
+    end
+
+end
+
+CreateButton("Custom Chat", function()
+    local chat = game.Players.LocalPlayer
+local chat = workspace.BubbleChat
+
+while true do
+    wait(0.01) -- Время, как загружается
+
+    for _, part in pairs(workspace:GetChildren()) do
+
+        if part:IsA("Chat") then -- находим функцию чаата!!!!
+
+        local chat = BubbleChat.new(
+
+            chat.Disabled = false
+
+            game:GetService("ChatGui")
+
+            connect:Chat("BubbleChat")
+
+            ChatService:Chat(game.PlaceId, game.Players.LocalPlayer)
+
+            _G.BubbleChat = true
+            while _G.BubbleChat do
+                task.wait(0.01)
+                                    end)
+                            end)
+                    end)
+            end)
+    end)
+end)
 
 -- Проверка на ошибки (Anti-Nil)
 if not game:IsLoaded() then game.Loaded:Wait() end
