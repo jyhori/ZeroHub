@@ -342,5 +342,84 @@ CreateButton("Jail", function()
     end
 end)
 
+CreateButton("Control", function()
+    print("You executed control to you! Elapsed time: 10s")
+        _G.Control = true
+        while _G.Jail do
+        -- Логика админ панеля 2
+        task.wait(10)
+    end
+end)
+
+Create Button("Tiny", function()
+    print("You executed tiny to you! Elapsed time: 30s")
+        _G.Tiny = true
+        while _G.Tiny do
+        -- Логика админ панеля 2
+        task.wait(30)
+    end
+end)
+
+CreateButton("Jumpscare", function()
+    print("You executed jumpscare to you! BOOO!!!! Elapsed time: 5s")
+        _G.Jumpscare = true
+        while _G.Tiny do
+        -- Логика админ панеля 2
+        task.wait(5)
+    end
+end)
+
+CreateButton("Morph", function()
+    print("You executed morph to you! Elapsed time: 1m")
+        _G.Morph = true
+        while _G.Morph do
+        -- Логика админ панеля 2
+        task.wait(60)
+    end
+end)
+
+CreateButton("AP2 Spam", function()
+    print("YOU EXECUTED ALL COMMANDS IN ADMIN PANEL 2 TO YOU! KILLED! Elapsed time: 1m")
+        _G.Rocket = true
+        while _G.Rocket do
+        task.wait(10)
+        _G.Ragdoll = true
+        while _G.Ragdoll do
+        task.wait(15)
+        _G.Ballon = true
+        while _G.Ballon do
+        task.wait(30)
+        _G.Inverse = true
+        while _G.Inverse do
+        task.wait(10)
+        _G.Nightvision = true
+        while _G.Nightvision do
+        task.wait(10)
+        _G.Jail = true
+        while _G.Jail do
+        task.wait(10)
+        _G.Control = true
+        while _G.Control do
+        task.wait(10)
+        _G.Tiny = true
+        while _G.Tiny do
+        task.wait(30)
+        _G.Jumpscare = true
+        while _G.Jumpscare do
+        task.wait(5)
+        _G.Morph = true
+        while _G.Morph do
+        task.wait(60)
+                                                                end
+                                                            end)
+                                                    end)
+                                            end)
+                                    end)
+                            end)
+                    end)
+            end)
+    end)
+end)
+
 -- Проверка на ошибки (Anti-Nil)
 if not game:IsLoaded() then game.Loaded:Wait() end
