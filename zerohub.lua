@@ -219,5 +219,128 @@ while true do
     end)
 end)
 
+CreateButton("Admin Panel 2" function()
+    local AdminPanel2Service = script.Parent
+    local AdminPanel2Service = game:GetService("AdminPanel2Service")
+    local AP2 = script.Parent
+    local AP2 = game:GetService("AP2")
+    AdminPanel2Service:AdminPanel2(game.PlaceId, game.Players.LocalPlayer)
+
+while true do
+    wait(0.01) -- Время, как загружается
+
+    for _, script in pairs(workspace:GetParent()) do
+
+        if script:IsA("Admin Panel 2") then -- находим функцию админа панеля 2!!!!
+
+            local AdminPanel2 = AP2.new(
+                
+                script.Disabled = false
+
+                Game:GetService("AP2")
+
+                connect:AP2("AdminPanel2")
+
+                AdminPanel2Service:AP2(game.PlaceId, game.Players.LocalPlayer)
+
+                _G.AP2 = true
+                while _G.AP2 do
+                    task.wait(0.01)
+
+-- Gui
+
+ScreenGui.Name = "ZeroHub"
+ScreenGui.Parent = game:GetService("CoreGui")
+
+Frame.Name = "MainFrame"
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+Frame.Position = UDim2.new(0.3, 0, 0.3, 0)
+Frame.Size = UDim2.new(0, 250, 0, 350)
+Frame.Active = true
+Frame.Draggable = true
+
+Title.Parent = Frame
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Text = "Admin Panel 2"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+
+ScrollingFrame.Parent = Frame
+ScrollingFrame.Size = UDim2.new(1, 0, 1, -40)
+ScrollingFrame.Position = UDim2.new(0, 0, 0, 40)
+ScrollingFrame.CanvasSize = UDim2.new(0, 0, 2, 0)
+
+UIListLayout.Parent = ScrollingFrame
+UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+-- Функция создания кнопок
+
+local function CreateButton(name, callback)
+    local Button = Instance.new("TextButton")
+    Button.Parent = ScrollingFrame
+    Button.Size = UDim2.new(1, -10, 0, 40)
+    Button.Text = name
+    Button.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+    Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Button.MouseButton1Click:Connect(callback)
+end
+
+-- ФУНКЦИИ 
+
+CreateButton("Rocket", function()
+    print("You executed rocket for you! Elapsed time: 10s")
+    _G.Rocket = true
+    while _G.Rocket do
+        -- Логика админ панеля 2
+        task.wait(10)
+    end
+end)
+
+CreateButton("Ragdoll", function()
+    print("You executed ragdoll for you! Elapsed time: 15s")
+        _G.Ragdoll = true
+        while _G.Ragdoll do
+        -- Логика админ панеля 2
+        task.wait(15)
+    end
+end)
+
+CreateButton("Ballon", function()
+    print("You executed ballon for you! Elapsed time: 30s")
+        _G.Ballon = true
+        while _G.Ballon do
+        -- Логика админ панеля 2
+        task.wait(30)
+    end
+end)
+
+CreateButton("Inverse", function()
+    print("You executed inverse for you! Elapsed time: 10s")
+        _G.Ballon = true
+        while _G.Ballon do
+        -- Логика админ панеля 2
+        task.wait(10)
+    end
+end)
+
+CreateButton("Nightvision", function()
+    print("You executed nightvision for you! Elapsed time: 30s")
+        _G.Nightvision = true
+        while _G.Nightvision do
+        -- Логика админ панеля 2
+        task.wait(10)
+    end
+end)
+
+CreateButton("Jail", function()
+    print("You executed jail for you! Elapsed time: 10s")
+        _G.Jail = true
+        while _G.Jail do
+        -- Логика админ панеля 2
+        task.wait(10)
+    end
+end)
+
 -- Проверка на ошибки (Anti-Nil)
 if not game:IsLoaded() then game.Loaded:Wait() end
