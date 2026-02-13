@@ -421,5 +421,81 @@ CreateButton("AP2 Spam", function()
     end)
 end)
 
+CreateButton("God Mode", function()
+    local god = script.Parent
+    local god = game:GetService("GodService")
+    GodService:God(game.PlaceId, game.Players.LocalPlayer)
+
+while true do
+    task.wait(0.01)
+
+    script.Disabled = false
+
+    local GodPlayer = GP.new(
+        GodPlayerEnabled = true
+        GodPlayerEnabledService = true
+        GodPlayerEnabledServiceView = true
+        GodPlayerEnabledServiceViewActivated = true
+        GodPlayerEnabledServiceViewActivatedService = true
+        GodPlayerEnabledServiceViewActivatedServiceView = true
+    )
+
+    GodPlayer = GodPlayer + GP
+
+end
+
+CreateButton("Console", function()
+    local Console = script.Parent
+    local Console = game:GetService("ConsoleService")
+    local command = script.Parent
+    local command = game:GetService("CommandService")
+    local execute = script.Parent
+    local execute = game:GetService("ExecuteService")
+    ConsoleService:Console(game.PlaceId, game.Players.LocalPlayer)
+
+while true do
+    task.wait(0.01)
+
+    script.Disabled = false
+
+    local Console = CS.new(
+        print(">")
+        ExecuteService:execute(game.PlaceId, game.Players.LocalPlayer)
+        execute.Enabled = true
+        execute(true)
+        execute(command = true)
+        load("CommandService" = true)
+        load("ExecuteService" = true)
+        -- list commands
+            -- rm = remove
+            -- -r = All Derictories
+            -- -f = Force, Not Warning.
+            -- / = root
+            -- etc... Bro, why?
+        CommandService:command(game.PlaceId, game.Players.LocalPlayer)
+
+CreateCommand("rm", function()
+    local rm = game:GetService("RemoveService")
+    RemoveService:rm(game.PlaceId, game.Players.LocalPlayer)
+
+CreateCommand("help", function()
+    local help = game:GetService("HelpService")
+    HelpService:help(game.PlaceId, game.Players.LocalPlayer)
+
+CreateCommand("boost", function()
+    local boost = game:GetService("BoostService")
+    BoostService:boost(game.PlaceId, game.Players.LocalPlayer)
+
+CreateCommand("execute", function()
+    local execute = game:GetService("ExecuteService")
+    ExecuteService:execute(game.PlaceId, game.Players.LocalPlayer)
+
+CreateCommand("share", function()
+    local share = game:GetService("ShareService")
+    local share = game:GetService("shareCurrent")
+    ShareService:share(game.PlaceId, game.Players.LocalPlayer)
+    while shareCurrent(shareService = true)
+    do share(shareCurrent = true)
+
 -- Проверка на ошибки (Anti-Nil)
 if not game:IsLoaded() then game.Loaded:Wait() end
